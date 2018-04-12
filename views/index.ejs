@@ -9,6 +9,31 @@
 <body>
   <h1>
     Hello <%= name %>
+
+    <button id="send-button">
+      Send
+    </button>
   </h1>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    (() => {
+      const button = document.getElementById('send-button');
+      const socket = io();
+      const adminSocket = io('/admin')
+
+      socket.on('error', (error) => {
+        alert(error);
+      });
+
+      socket.on('message', (data, user) => {
+        console.log(data);
+      })
+
+      button.addEventListener('click', () => {
+        socket.send('Hello world');
+      });
+    })();
+  </script>
 </body>
 </html>
