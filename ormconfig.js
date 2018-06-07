@@ -2,7 +2,7 @@ module.exports = {
   "type": "sqlite",
   "database": "./db/database.sqlite",
   "synchronize": true,
-  "logging": false,
+  "logging": true,
   "entities": [
     "src/modules/**/*.entity.js"
   ],
