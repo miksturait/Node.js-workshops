@@ -1,0 +1,14 @@
+extends ../layout
+
+block append content
+  form(method="post", action="/user/login")
+    label
+      span
+        | Email
+      input(type="email", name="email")
+    label
+      span
+        | Password
+      input(type="password", name="password")
+    button(type="submit")
+      | Log in

@@ -29,4 +29,5 @@ passport.use(strategy);
 
 export default passport.authenticate('local', {
   failureRedirect: '/user/login',
+  failureFlash: true,
 })

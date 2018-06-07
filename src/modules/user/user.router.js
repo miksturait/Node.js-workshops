@@ -12,7 +12,9 @@ router.post(
 )
 
 router.get('/login', (req, res) => {
-  res.json({ foo: 'login' });
+  res.render('user/login', {
+    error: req.flash('error')
+  });
 })
 
 export default router;
