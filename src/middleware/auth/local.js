@@ -7,7 +7,8 @@ const strategy = new Strategy({
   passwordField: 'password',
   usernameField: 'email',
   session: true,
-}, async (email, password, done) => {
+  passReqToCallback: true,
+}, async (req, email, password, done) => {
   const repository = getRepository(User);
 
   const user = await repository.findOne({
@@ -15,10 +16,12 @@ const strategy = new Strategy({
   });
 
   if (!user) {
+    req.flash('error', 'User not found');
     return done(null, false);
   }
 
   if (user.password !== password) {
+    req.flash('error', 'Password does not match');
     return done(null, false);
   }
 
@@ -30,4 +33,5 @@ passport.use(strategy);
 export default passport.authenticate('local', {
   failureRedirect: '/user/login',
   failureFlash: true,
+
 })

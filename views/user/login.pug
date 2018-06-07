@@ -1,6 +1,10 @@
 extends ../layout
 
 block append content
+  if errors.length
+    ul(style="color: red")
+      each message in errors
+        li= message
   form(method="post", action="/user/login")
     label
       span

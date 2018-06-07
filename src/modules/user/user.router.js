@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { first } from 'lodash'
 import localAuth from '../../middleware/auth/local';
 
 const router = Router();
@@ -6,14 +7,14 @@ const router = Router();
 router.post(
   '/login',
   localAuth,
-  (req, res) => {
-    res.json('User logged in')
-  }
+  (req, res) => res.redirect('/')
 )
 
 router.get('/login', (req, res) => {
+  const errors = req.flash('error');
+
   res.render('user/login', {
-    error: req.flash('error')
+    errors
   });
 })
 

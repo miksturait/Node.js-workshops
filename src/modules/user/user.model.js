@@ -4,4 +4,11 @@ export default class User {
     this.email = email;
     this.password = password;
   }
+
+  toJSON() {
+    return {
+      id: this.id,
+      email: this.email,
+    };
+  }
 }
